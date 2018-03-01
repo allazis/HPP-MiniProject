@@ -1,7 +1,7 @@
 CC = gcc
 LD = gcc
-CFLAGS = 
-LDFLAGS = 
+CFLAGS = -Ofast
+LDFLAGS = -Ofast
 LIBS = -lm
 
 OBJS = sim.o funcs.o utils.o file_ops.o timestep.o
