@@ -2,12 +2,12 @@
 #define STRUCTS_HEADER_FILE
 
 struct cell {
-  int A_g;
   double A;
-  int B_q;
   double B;
-  int C_h;
   double C;
+  int A_g;
+  int B_q;
+  int C_h;
   int C_i;
 };
 typedef struct cell cell_t;
