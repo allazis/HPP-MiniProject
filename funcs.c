@@ -52,7 +52,7 @@ double compute_new_C(int C_h,
   double tmp2 = tmp1a + tmp1b;
   tmp2 *= 0.0001;
   double tmp3 = (A + B) / 800;
-  double tmp4 = get_sq_contrib(C, 2, C_i+2) / 9000;
+  double tmp4 = get_sq_contrib(C, C_i+2) / 9000;
   double increase = tmp2 + tmp3 + tmp4;
   if(C > 1)
     increase = increase / (C*C);

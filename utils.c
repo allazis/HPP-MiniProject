@@ -1,8 +1,8 @@
 #include <math.h>
 #include "utils.h"
 
-double get_sq_contrib(double x, int p, int d) {
-  double a = pow(x, p);
+double get_sq_contrib(double x, int d) {
+  double a = x*x;
   double b = a / d;
   return b;
 }
