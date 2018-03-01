@@ -16,7 +16,7 @@ double B_fun(int B_q) {
   int i;
   for(i = 0; i < L; i++) {
     product *= (x+i*0.007);
-    if(product >= 0)
+    //if(product >= 0)
       sum += product;
   }
   return sum;
