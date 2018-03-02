@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <math.h>
 #include "funcs.h"
-#include "utils.h"
 
 double compute_new_A(int A_g,
 		     double A,
@@ -49,12 +48,60 @@ double compute_new_C(int C_h,
 		     double C) {
   int tmp1a = C_h / (C_i + 1);
   int tmp1b = C_h / (C_i + 2);
-  double tmp2 = tmp1a + tmp1b;
-  tmp2 *= 0.0001;
-  double tmp3 = (A + B) / 800;
-  double tmp4 = get_sq_contrib(C, C_i+2) / 9000;
+
+  //double tmp2 = tmp1a + tmp1b;
+  //tmp2 *= 0.0001; replace by
+  double tmp2 = (tmp1a + tmp1b)*0.0001;
+
+  double tmp3 = (A + B) * 1.25e-3;// /800;
+
+  // double tmp4 = get_sq_contrib(C,C_i+2) / 9000; replaced by
+  double cSquare = C*C;
+  double tmp4 = cSquare / ((C_i+2) * 9000);
+
   double increase = tmp2 + tmp3 + tmp4;
-  if(C > 1)
+  if(C > 1) 
     increase = increase / (C*C);
+
   return C + increase;
+}
+
+double B_fun(int B_q) {
+  double x = (double)B_q * 0.001;
+  double sum = 0;
+  double product = 1;
+  int i;
+  for(i = 0; i < 20; i+= 10) {
+    product *= (x+i*0.007);
+    //if(product >= 0)
+    sum += product;
+
+    product *= (x+(i+1)*0.007);
+    sum += product;
+
+    product *= (x+(i+2)*0.007);
+    sum += product;
+
+    product *= (x+(i+3)*0.007);
+    sum += product;
+
+    product *= (x+(i+4)*0.007);
+    sum += product;
+
+    product *= (x+(i+5)*0.007);
+    sum += product;
+
+    product *= (x+(i+6)*0.007);
+    sum += product;
+
+    product *= (x+(i+7)*0.007);
+    sum += product;
+
+    product *= (x+(i+8)*0.007);
+    sum += product;
+
+    product *= (x+(i+9)*0.007);
+    sum += product;
+  }
+  return sum;
 }

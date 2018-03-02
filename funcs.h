@@ -14,3 +14,5 @@ double compute_new_C(int C_h,
 		     double A,
 		     double B,
 		     double C);
+
+double B_fun(int B_q);
