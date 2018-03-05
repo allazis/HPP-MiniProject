@@ -27,19 +27,62 @@ int do_one_time_step(int N, cell_t* cells) {
       double neighbor_A_sum = 0;
       /* neighbor i-1 */
       if(i > 0)
-	neighbor_A_sum += cells[(i-1)+j*N].A;
+	      neighbor_A_sum += cells[(i-1)+j*N].A;
       /* neighbor i+1 */
       if(i < N-1)
-	neighbor_A_sum += cells[(i+1)+j*N].A;
+	      neighbor_A_sum += cells[(i+1)+j*N].A;
       /* neighbor j-1 */
       if(j > 0)
-	neighbor_A_sum += cells[i+(j-1)*N].A;
+	      neighbor_A_sum += cells[i+(j-1)*N].A;
       /* neighbor j+1 */
       if(j < N-1)
-	neighbor_A_sum += cells[i+(j+1)*N].A;
+	      neighbor_A_sum += cells[i+(j+1)*N].A;
       neighbor_A_sums[idx] = neighbor_A_sum;
     }
   }
+
+  // for(i = 1; i < N-1; i++) {
+  //   for(j = 1; j < N-1; j++) {
+  //     int idx = i+j*N;
+  //     /* Find A-values from neighboring cells. */
+  //     double neighbor_A_sum = 0;
+  //     /* neighbor i-1 */
+  //     neighbor_A_sum += cells[(i-1)+j*N].A;
+  //      neighbor i+1 
+  //     neighbor_A_sum += cells[(i+1)+j*N].A;
+  //     /* neighbor j-1 */
+  //     neighbor_A_sum += cells[i+(j-1)*N].A;
+  //     /* neighbor j+1 */
+  //     neighbor_A_sum += cells[i+(j+1)*N].A;
+  //     neighbor_A_sums[idx] = neighbor_A_sum;
+  //   }
+  // }
+
+
+  //   double A, neighbor_A_sum, B, C;
+  // int A_g, B_q, C_h, C_i;
+  // for(i = 0; i < n_cells; i++) {
+  //   A = cells[i].A;
+  //   B = cells[i].B;
+  //   C = cells[i].C;
+
+  //   /* Compute new value of A for each cell. */
+  //   A_g = cells[i].A_g;
+  //   neighbor_A_sum = neighbor_A_sums[i];
+  //   cells2[i].A = compute_new_A(A_g, A, B, C, neighbor_A_sum);
+
+  //  Compute new value of B for each cell. 
+  //   B_q = cells[i].B_q;
+  //   cells2[i].B = compute_new_B(B_q, A, B, C);
+
+  // /* Compute new value of C for each cell. */
+  //   C_h = cells[i].C_h;
+  //   C_i = cells[i].C_i;
+  //   cells2[i].C = compute_new_C(C_h, C_i, A, B, C);
+   
+  //   /* Copy final result back to cells array. */
+  //   cells[i] = cells2[i];
+  // }
 
   /* Compute new value of A for each cell. */
   for(i = 0; i < n_cells; i++) {

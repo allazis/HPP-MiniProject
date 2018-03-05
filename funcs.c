@@ -8,17 +8,28 @@ double compute_new_A(int A_g,
 		     double B,
 		     double C,
 		     double neighbor_A_sum) {
-  const int nnn = 5;
-  double* tmpBuf = (double*)malloc(nnn*sizeof(double));
-  tmpBuf[0] = 0.001*B;
-  tmpBuf[1] = 0.002*C;
-  tmpBuf[2] = neighbor_A_sum * 0.005;
-  tmpBuf[3] = 1e-6*sqrt(A*A+1);
-  tmpBuf[4] = sqrt(A*A+2);
-  double sum = 0;
-  int i;
-  for(i = 0; i < nnn; i++)
-    sum += tmpBuf[i];
+  // const int nnn = 5;
+  // double* tmpBuf = (double*)malloc(nnn*sizeof(double));
+  // tmpBuf[0] = 0.001*B;
+  // tmpBuf[1] = 0.002*C;
+  // tmpBuf[2] = neighbor_A_sum * 0.005;
+  // tmpBuf[3] = 1e-6*sqrt(A*A+1);
+  // tmpBuf[4] = sqrt(A*A+2);
+  // double sum = 0;
+  // int i;
+  // for(i = 0; i < nnn; i++)
+  //   sum += tmpBuf[i];
+  double sum = 0.001*B + 
+            0.002*C +
+            neighbor_A_sum * 0.005 +
+            1e-6*sqrt(A*A+1) +
+            sqrt(A*A+2);
+  // double sum = 0.001*B;
+  // sum += 0.002*C;
+  // sum += neighbor_A_sum * 0.005;
+  // sum += 1e-6*sqrt(A*A+1);
+  // sum += sqrt(A*A+2);
+
   if(A_g) {
     double extraSum = A*A/(1+B);
     if(extraSum > 5)
@@ -27,7 +38,7 @@ double compute_new_A(int A_g,
   }
   if(A > 1)
     sum = sum / A;
-  free(tmpBuf);
+  //free(tmpBuf);
   return A + sum;
 }
 
