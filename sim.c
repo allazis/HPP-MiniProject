@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
   printf("Starting simulation...\n");
   int i;
   for(i = 0; i < n_steps; i++) {
-    if(do_one_time_step(N, cells) != 0) {
+    if(do_one_time_step(N, cells, n_threads) != 0) {
       printf("Error: do_one_time_step failed.\n");
       return -1;
     }
