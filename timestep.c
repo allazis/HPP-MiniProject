@@ -39,7 +39,8 @@ int do_one_time_step(int N, cell_t* cells) {
 	      neighbor_A_sum += cells[i+(j+1)*N].A;
       neighbor_A_sums[idx] = neighbor_A_sum;
     }
-  }
+  } 
+
 
   // for(i = 1; i < N-1; i++) {
   //   for(j = 1; j < N-1; j++) {
@@ -48,7 +49,7 @@ int do_one_time_step(int N, cell_t* cells) {
   //     double neighbor_A_sum = 0;
   //     /* neighbor i-1 */
   //     neighbor_A_sum += cells[(i-1)+j*N].A;
-  //      neighbor i+1 
+  //     /* neighbor i+1 */
   //     neighbor_A_sum += cells[(i+1)+j*N].A;
   //     /* neighbor j-1 */
   //     neighbor_A_sum += cells[i+(j-1)*N].A;
@@ -58,7 +59,69 @@ int do_one_time_step(int N, cell_t* cells) {
   //   }
   // }
 
+  // /* Top and bottom borders */
+  // for (i = 1; i < N-1; i++) {
+  // 	int j = 0;
+  // 	int idx = i+j*N;
+  // 	double neighbor_A_sum = 0;
+  //   /* neighbor i-1 */
+  //   neighbor_A_sum += cells[(i-1)+j*N].A;
+  //   /* neighbor i+1 */
+  //   neighbor_A_sum += cells[(i+1)+j*N].A;
+  //   /* neighbor j+1 */
+  //   neighbor_A_sum += cells[i+(j+1)*N].A;
+  //   neighbor_A_sums[idx] = neighbor_A_sum;
 
+  //   j = N;
+  // 	idx = i+j*N;
+  // 	neighbor_A_sum = 0;
+
+  // 	/* neighbor i-1 */
+  //   neighbor_A_sum += cells[(i-1)+j*N].A;
+  //   /* neighbor i+1 */
+  //   neighbor_A_sum += cells[(i+1)+j*N].A;
+  //   /* neighbor j-1 */
+  //   neighbor_A_sum += cells[i+(j-1)*N].A;
+  //   neighbor_A_sums[idx] = neighbor_A_sum;
+  // }
+
+  // /* Left and right borders */
+  // for (j = 1; j < N-1; i++) {
+  // 	int i = 0;
+  // 	int idx = i+j*N;
+  // 	double neighbor_A_sum = 0;
+  // 	/* neighbor i+1 */
+  //   neighbor_A_sum += cells[(i+1)+j*N].A;
+  //   /* neighbor j-1 */
+  //   neighbor_A_sum += cells[i+(j-1)*N].A;
+  //   /* neighbor j+1 */
+  //   neighbor_A_sum += cells[i+(j+1)*N].A;
+  //   neighbor_A_sums[idx] = neighbor_A_sum;
+
+  //   i = N;
+  // 	idx = i+j*N;
+  // 	neighbor_A_sum = 0;
+  // 	/* neighbor i-1 */
+  //   neighbor_A_sum += cells[(i-1)+j*N].A;
+  //   /* neighbor j-1 */
+  //   neighbor_A_sum += cells[i+(j-1)*N].A;
+  //   /* neighbor j+1 */
+  //   neighbor_A_sum += cells[i+(j+1)*N].A;
+  //   neighbor_A_sums[idx] = neighbor_A_sum;
+  // }
+
+  // /* Corners */
+  // int idx = 0+0*N;
+  // neighbor_A_sums[idx] = cells[(i+1)+j*N].A + cells[i+(j+1)*N].A;
+  // idx = 0+N*N;
+  // neighbor_A_sums[idx] = cells[(i-1)+j*N].A + cells[i+(j+1)*N].A;
+  // idx = N+0*N;
+  // neighbor_A_sums[idx] = cells[(i+1)+j*N].A + cells[i+(j-1)*N].A;
+  // idx = N+N*N;
+  // neighbor_A_sums[idx] = cells[(i-1)+j*N].A + cells[i+(j-1)*N].A;
+  
+
+  // /* Loop fusion test */
   //   double A, neighbor_A_sum, B, C;
   // int A_g, B_q, C_h, C_i;
   // for(i = 0; i < n_cells; i++) {
@@ -71,7 +134,7 @@ int do_one_time_step(int N, cell_t* cells) {
   //   neighbor_A_sum = neighbor_A_sums[i];
   //   cells2[i].A = compute_new_A(A_g, A, B, C, neighbor_A_sum);
 
-  //  Compute new value of B for each cell. 
+  //   /* Compute new value of B for each cell.  */
   //   B_q = cells[i].B_q;
   //   cells2[i].B = compute_new_B(B_q, A, B, C);
 

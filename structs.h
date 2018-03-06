@@ -1,7 +1,7 @@
 #ifndef STRUCTS_HEADER_FILE
 #define STRUCTS_HEADER_FILE
 
-struct cell {
+struct __attribute__((__packed__)) cell {
   double A;
   double B;
   double C;

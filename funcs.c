@@ -24,18 +24,24 @@ double compute_new_A(int A_g,
             neighbor_A_sum * 0.005 +
             1e-6*sqrt(A*A+1) +
             sqrt(A*A+2);
+
   // double sum = 0.001*B;
   // sum += 0.002*C;
   // sum += neighbor_A_sum * 0.005;
   // sum += 1e-6*sqrt(A*A+1);
   // sum += sqrt(A*A+2);
-
+  
   if(A_g) {
     double extraSum = A*A/(1+B);
     if(extraSum > 5)
       extraSum = 5;
     sum += extraSum;
   }
+
+  // double extraSum = A*A/(1+B);
+  // extraSum = (5<extraSum) ? 5 : extraSum;
+  // sum += A_g*extraSum;
+  
   if(A > 1)
     sum = sum / A;
   //free(tmpBuf);
@@ -47,6 +53,7 @@ double compute_new_B(int B_q,
 		     double B,
 		     double C) {
   double increase = B_fun(B_q) + 0.01*A + 0.001*C;
+  //printf("%f\n", B);
   if(B > 1)
     increase = increase / B;
   return B + increase;
@@ -77,7 +84,8 @@ double compute_new_C(int C_h,
   return C + increase;
 }
 
-double B_fun(int B_q) {
+inline double B_fun(int B_q) {
+  //printf("%d\n", B_q);
   double x = (double)B_q * 0.001;
   double sum = 0;
   double product = 1;

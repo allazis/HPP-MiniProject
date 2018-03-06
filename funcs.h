@@ -15,4 +15,4 @@ double compute_new_C(int C_h,
 		     double B,
 		     double C);
 
-double B_fun(int B_q);
+inline double B_fun(int B_q);
