@@ -8,6 +8,7 @@ double compute_new_A(int A_g,
 		     double B,
 		     double C,
 		     double neighbor_A_sum) {
+	//printf("%f\n", neighbor_A_sum);
   // const int nnn = 5;
   // double* tmpBuf = (double*)malloc(nnn*sizeof(double));
   // tmpBuf[0] = 0.001*B;
@@ -41,7 +42,6 @@ double compute_new_A(int A_g,
   // double extraSum = A*A/(1+B);
   // extraSum = (5<extraSum) ? 5 : extraSum;
   // sum += A_g*extraSum;
-  
   if(A > 1)
     sum = sum / A;
   //free(tmpBuf);
